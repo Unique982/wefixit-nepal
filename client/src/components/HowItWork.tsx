@@ -1,124 +1,139 @@
-import Image from "next/image";
-import { ShieldCheck, Award, Zap } from "lucide-react";
+import React from "react";
+import {
+  MousePointer2,
+  Settings2,
+  ShieldCheck,
+  Zap,
+  ArrowRight,
+} from "lucide-react";
 
-export default function HowItWorks() {
-  const steps = [
-    {
-      id: 1,
-      title: "Book Your Repair",
-      description:
-        "Select your device and the issue online. Get an instant quote and book a time slot.",
-    },
-    {
-      id: 2,
-      title: "Drop-off or Mail-in",
-      description:
-        "Visit one of our locations or use our secure shipping kit to send your device to us.",
-    },
-    {
-      id: 3,
-      title: "Get it Back",
-      description:
-        "Our techs fix your device. We test it thoroughly and send it back good as new.",
-    },
-  ];
+const steps = [
+  {
+    title: "Diagnostics & Quoting",
+    subtitle: "Step 01",
+    description:
+      "Our experts perform a deep-dive technical audit of your device. We identify the root cause—whether it's a micro-solder issue or a software glitch—and provide a transparent NRs estimate instantly.",
+    icon: <MousePointer2 className="w-4 h-4 text-blue-600" />,
+    accent: "bg-blue-500",
+    image:
+      "https://images.unsplash.com/photo-1597733336794-12d05021d510?auto=format&fit=crop&q=80&w=800",
+  },
+  {
+    title: "Precision Engineering",
+    subtitle: "Step 02",
+    description:
+      "We don't just 'fix' things; we restore them. Using industry-grade heat guns and precision tools, our technicians replace damaged components with genuine, high-performance parts.",
+    icon: <Settings2 className="w-4 h-4 text-purple-600" />,
+    accent: "bg-purple-500",
+    image:
+      "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800",
+  },
+  {
+    title: "Rigorous Quality Check",
+    subtitle: "Step 03",
+    description:
+      "Before your device leaves our bench, it undergoes a 30-point stress test. We check battery cycles, touch responsiveness, and thermal performance to ensure it feels brand new.",
+    icon: <ShieldCheck className="w-4 h-4 text-emerald-600" />,
+    accent: "bg-emerald-500",
+    image:
+      "https://images.unsplash.com/photo-1555664424-778a1e5e1b48?auto=format&fit=crop&q=80&w=800",
+  },
+  {
+    title: "Ready for Pickup",
+    subtitle: "Step 04",
+    description:
+      "Once the 'Magic Fix' is complete, you'll receive a real-time notification. Every repair is backed by our 90-day warranty and a digital service report for your records.",
+    icon: <Zap className="w-4 h-4 text-amber-600" />,
+    accent: "bg-amber-500",
+    image:
+      "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&q=80&w=800",
+  },
+];
 
-  const features = [
-    {
-      icon: <ShieldCheck className="text-blue-600" size={24} />,
-      title: "Expert Techs",
-      desc: "Our technicians are certified and undergo regular training for the latest hardware.",
-    },
-    {
-      icon: <Award className="text-blue-600" size={24} />,
-      title: "1-Year Warranty",
-      desc: "We stand behind our work. All parts and labor come with a comprehensive warranty.",
-    },
-    {
-      icon: <Zap className="text-blue-600" size={24} />,
-      title: "Quick Turnaround",
-      desc: "Most phone repairs are finished in 2 hours, and laptops within 24-48 hours.",
-    },
-  ];
-
+const HowItWorksAlternating = () => {
   return (
-    <section className="bg-white py-16 md:py-24">
-      <div className="container mx-auto px-6">
-        {/* Top Section */}
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20 mb-20 md:mb-32">
-          {/* Left: Content */}
-          <div className="w-full lg:w-1/2 order-2 lg:order-1">
-            <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight">
-              How It Works
-            </h2>
-            <p className="text-slate-500 text-base md:text-lg mb-12 max-w-lg leading-relaxed">
-              Repairing your device has never been easier. We've streamlined our
-              process to save you time and hassle.
-            </p>
-
-            <div className="relative space-y-10">
-              {/* Vertical line connecting dots (Desktop only) */}
-              <div className="absolute left-4 top-2 bottom-2 w-px bg-slate-100 hidden sm:block" />
-
-              {steps.map((step) => (
-                <div
-                  key={step.id}
-                  className="relative flex flex-col sm:flex-row gap-4 sm:gap-6 group"
-                >
-                  <div className="z-10 flex-shrink-0 w-9 h-9 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-blue-200">
-                    {step.id}
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-slate-900 text-lg mb-2">
-                      {step.title}
-                    </h3>
-                    <p className="text-slate-500 text-sm md:text-base leading-relaxed max-w-md">
-                      {step.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Right: Image Card */}
-          <div className="w-full lg:w-1/2 order-1 lg:order-2">
-            <div className="relative group">
-              {/* Decorative background shape */}
-              <div className="absolute -inset-2 bg-gradient-to-tr from-blue-600 to-blue-400 rounded-[2.5rem] blur-2xl opacity-10 group-hover:opacity-20 transition-opacity" />
-
-              <div className="relative aspect-[4/3] sm:aspect-video lg:aspect-square xl:aspect-[4/3] rounded-[2rem] overflow-hidden border-[6px] md:border-[12px] border-white shadow-2xl">
-                <Image
-                  src="/download.jpg"
-                  alt="Technician working"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </div>
-          </div>
+    <section className="py-20 lg:py-32 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Header Section */}
+        <div className="max-w-3xl mx-auto text-center mb-20 lg:mb-32">
+          <h2 className="text-blue-600 font-bold tracking-[0.2em] uppercase text-xs mb-6">
+            The Workflow
+          </h2>
+          <h3 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight leading-[1.1]">
+            How we bring your <br className="hidden md:block" /> tech back to
+            life.
+          </h3>
         </div>
 
-        {/* Bottom Section: Features Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-16 pt-16 border-t border-slate-100">
-          {features.map((feature, index) => (
+        {/* Steps Container */}
+        <div className="space-y-24 md:space-y-40 lg:space-y-52">
+          {steps.map((step, index) => (
             <div
               key={index}
-              className="flex flex-col items-center sm:items-start text-center sm:text-left group"
+              className={`flex flex-col gap-12 lg:gap-32 items-center ${
+                index % 2 === 1 ? "lg:flex-row-reverse" : "lg:flex-row"
+              }`}
             >
-              <div className="mb-6 p-4 rounded-2xl bg-blue-50 text-blue-600 transition-transform group-hover:-translate-y-1">
-                {feature.icon}
+              {/* Text Content */}
+              <div className="flex-1 w-full space-y-8">
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-slate-50 border border-slate-100 shadow-sm">
+                    {step.icon}
+                  </div>
+                  <span className="text-sm font-black text-slate-400 uppercase tracking-widest">
+                    {step.subtitle}
+                  </span>
+                </div>
+
+                <div className="space-y-4">
+                  <h4 className="text-3xl md:text-4xl font-bold text-slate-900 leading-tight">
+                    {step.title}
+                  </h4>
+                  <p className="text-lg text-slate-500 leading-relaxed font-medium">
+                    {step.description}
+                  </p>
+                </div>
+
+                <div className="pt-2">
+                  <button className="group flex items-center gap-2 text-slate-900 font-bold hover:text-blue-600 transition-colors">
+                    Learn more about our process
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </div>
               </div>
-              <h4 className="text-xl font-bold text-slate-900 mb-3">
-                {feature.title}
-              </h4>
-              <p className="text-slate-500 text-sm md:text-base leading-relaxed">
-                {feature.desc}
-              </p>
+
+              {/* Visual Side */}
+              <div className="flex-1 w-full relative group">
+                {/* Decorative Blob */}
+                <div
+                  className={`absolute -inset-4 md:-inset-10 rounded-[4rem] opacity-10 blur-3xl transition-opacity group-hover:opacity-20 ${step.accent}`}
+                />
+
+                {/* Image Card */}
+                <div className="relative z-10 rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl shadow-slate-200 border-[6px] md:border-[12px] border-white">
+                  <img
+                    src={step.image}
+                    alt={step.title}
+                    className="w-full aspect-[4/3] object-cover grayscale-[20%] group-hover:grayscale-0 scale-100 group-hover:scale-110 transition-all duration-700"
+                  />
+                </div>
+
+                {/* Floating Step Badge (Optional flourish) */}
+                <div className="absolute -bottom-6 -right-6 md:right-8 z-20 bg-white p-4 rounded-2xl shadow-xl hidden md:block">
+                  <div
+                    className={`w-12 h-1.5 rounded-full mb-2 ${step.accent}`}
+                  />
+                  <span className="text-xs font-bold text-slate-400 uppercase italic">
+                    Phase 0{index + 1}
+                  </span>
+                </div>
+              </div>
             </div>
           ))}
         </div>
       </div>
     </section>
   );
-}
+};
+
+export default HowItWorksAlternating;
