@@ -33,7 +33,7 @@ export default function HeroSection() {
             </div>
 
             {/* Heading */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight text-slate-900 mb-6">
+            <h1 className="text-5xl lg:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.1]">
               Precision Apple <br />
               Repair in <span className="text-blue-600 italic">Kathmandu</span>
             </h1>

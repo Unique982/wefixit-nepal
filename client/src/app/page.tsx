@@ -1,5 +1,13 @@
 import AboutSection from "@/components/AboutSection";
 import CTASection from "@/components/Cta";
+import AdsGiftSection from "@/components/final/AdsGiftS";
+import LabSection from "@/components/final/Lab";
+import Pricing from "@/components/final/Pricing";
+import RepairJourney from "@/components/final/RepairJourney";
+import Services from "@/components/final/Services";
+import TestimonialsSection from "@/components/final/Testimonials";
+import AdvantageSection from "@/components/final/why";
+
 import Footer from "@/components/Footer";
 // import HeroSection from "@/components/Hero";
 import HowItWorksAlternating from "@/components/HowItWork";
@@ -17,15 +25,25 @@ export default function HomePage() {
     <>
       <Navbar />
       <HeroSection />
-      {/* <HeroSection /> */}
+      {/* <HeroSection />
 
       <AboutSection />
-      <RepairServices />
+      <RepairServices /> */}
       {/* <ServiceSection /> */}
-      <PricingSection />
+      {/* <PricingSection />
       <WorkProcess />
       <CTASection />
-      <TestimonialSection />
+      <TestimonialSection /> */}
+
+      {/* finall */}
+      <Services />
+      <AdvantageSection />
+      <PricingSection />
+      <RepairJourney />
+      <LabSection />
+      <TestimonialsSection />
+      <CTASection />
+      <AdsGiftSection />
 
       <Footer />
     </>
