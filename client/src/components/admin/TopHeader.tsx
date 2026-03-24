@@ -2,7 +2,16 @@
 "use client";
 
 import { useState } from "react";
-import { Bell, Search, User, Settings, LogOut, Menu, X } from "lucide-react";
+import {
+  Bell,
+  Search,
+  User,
+  Settings,
+  LogOut,
+  Menu,
+  X,
+  Link,
+} from "lucide-react";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -178,12 +187,12 @@ export function TopNavbar() {
                 admin@restaurant.com
               </p>
             </div>
-
-            <DropdownMenuItem className="gap-2 cursor-pointer">
-              <User className="h-4 w-4 text-muted-foreground" />
-              Profile
-            </DropdownMenuItem>
-
+            <Link href="/admin/profile">
+              <DropdownMenuItem className="gap-2 cursor-pointer">
+                <User className="h-4 w-4 text-muted-foreground" />
+                Profile
+              </DropdownMenuItem>
+            </Link>
             <DropdownMenuItem className="gap-2 cursor-pointer">
               <Settings className="h-4 w-4 text-muted-foreground" />
               Settings
