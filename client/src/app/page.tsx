@@ -2,29 +2,26 @@ import AboutSection from "@/components/AboutSection";
 import CTASection from "@/components/Cta";
 import AdsGiftSection from "@/components/final/AdsGiftS";
 import LabSection from "@/components/final/Lab";
-import Pricing from "@/components/final/Pricing";
+
 import RepairJourney from "@/components/final/RepairJourney";
-import Services from "@/components/final/Services";
 import TestimonialsSection from "@/components/final/Testimonials";
 import AdvantageSection from "@/components/final/why";
 
 import Footer from "@/components/Footer";
-// import HeroSection from "@/components/Hero";
-import HowItWorksAlternating from "@/components/HowItWork";
-import HowItWorks from "@/components/HowItWork";
 import HeroSection from "@/components/landing2/Hero";
 import PricingSection from "@/components/landing2/PricingSection";
 import RepairServices from "@/components/landing2/Services";
-import TestimonialSection from "@/components/landing2/Testimonials";
+import AutoScrollServices from "@/components/Modeile";
+import AutoImageScroll from "@/components/Modeile";
+import MobileScrollServices from "@/components/Modeile";
 import Navbar from "@/components/Navbar";
-// import ServiceSection from "@/components/Services";
-import WorkProcess from "@/components/WorkProcess";
 
 export default function HomePage() {
   return (
     <>
       <Navbar />
-      <HeroSection />
+      {/* <HeroSection /> */}
+
       {/* <HeroSection />
 
       <AboutSection />
@@ -36,7 +33,21 @@ export default function HomePage() {
       <TestimonialSection /> */}
 
       {/* finall */}
-      <Services />
+      <HeroSection />
+      <RepairServices />
+      {/* <AutoImageScroll /> */}
+      {/* <div className="w-full h-screen flex justify-center items-center">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-[30%] min-w-auto h-auto object-contain"
+        >
+          <source src="/iphone ads.mp4" type="video/mp4" />
+        </video>
+      </div> */}
+
       <AdvantageSection />
       <PricingSection />
       <RepairJourney />
