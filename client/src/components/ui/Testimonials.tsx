@@ -7,31 +7,28 @@ const testimonials = [
   {
     quote:
       "My MacBook Pro had a liquid spill and the authorized center said it couldn't be fixed. WEfixit repaired the logic board in 2 days at a fraction of the cost!",
-    name: "Anish Sharma",
+    name: "Niraj Kushwaha",
     role: "Software Engineer",
     location: "Kathmandu, Nepal",
-    avatar:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCHzxwK-qjpwSArGcNh3i0Qv_u_ggVTocOioah-9u3gNxDdyc_3QAVml1Js_ojWElV6e6zq7h00kVUk9piZRf1fZ1yyYPaVoIzBF9-Pm-QAJw_BC5wWNJ75vrDHvF69WC0rtsg_NXRJLjFvb94lzyxxXvLwPJV3VbkpAEsCR4IekRnhOqQA816qdn73KTj3N2FAdrxtrxIRPq_X1UnMX9N8cDtHSp-V4H1fdVNEDNbTx5VoMmb7dC66oHO3uN6VHG7xo-GRgcad2scy",
+    avatar: "https://evolvixinfotech.vercel.app/nirajkushwaha.png",
     rating: 5,
   },
   {
     quote:
       "Best iPhone screen repair in Kathmandu. They used a genuine display and it feels like new. The 6-month warranty gave me confidence.",
-    name: "Maya Gurung",
+    name: "Sagar Kushwaha",
     role: "Content Creator",
     location: "Kathmandu, Nepal",
-    avatar:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBs9hDJajBrN0EVD05zVNJ07lzp_bhrzqRnA26eka_RU5yInn476E9ScDQ5goHMFN1PYza4P1F_yvu7q9_pJsflPozesfHe4zB0Bl7whOvPi94yiOmXzz7iode0lYy9h4CFyLzNXpenR56_d9KtPNrnWl2gFNXanzueEzgnbmnlUyDOX-xj1OSld2jiyuG-XO3VVWd5Vh1V9hUmCurf1i3AS9uovIpOBr1klUhASIdFUEOMd4-01NaOXMhNRB3EX565kkqs6xm2Es6s",
+    avatar: "https://evolvixinfotech.vercel.app/sagarkushwaha.png",
     rating: 5,
   },
   {
     quote:
       "Specialized micro-repair on MacBooks. They explained exactly what was wrong with my iPad battery before fixing it. Excellent service!",
-    name: "Rajesh Thapa",
+    name: "Ustav Bhattarai",
     role: "Photographer",
     location: "Kathmandu, Nepal",
-    avatar:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuABuNtCj73BQL11iLwRSozvq2VkwVP2FuMqLfaDQgH3_jEy3eiR6RB44MIz6oylc96htFG1W9fECN7GD6ft7q7lD1YEFYxpbuClG-zHZJzb2bkTP8uZIHYHKSaoeduuFgxSLyKCf6BTPANHcknhpLF4nTP5q8ZDneTcSJIXyWq5okRWUqYAhulTc_1f0JUdpCAZ8GSaKDjNknwSH2je7oTH0ZbA89L3uetYgldbONSKShB0NVhdE73njQ6XLQKqbN1rXzADgbm5RR3k",
+    avatar: "https://evolvixinfotech.vercel.app/ustavbhattarai.jpeg",
     rating: 5,
   },
 ];

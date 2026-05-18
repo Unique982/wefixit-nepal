@@ -40,19 +40,12 @@ const categoryData = [
   { name: "Drinks", value: 10 },
 ];
 
-// Modern color palette
-const COLORS = [
-  "#FF6B6B", // red-ish
-  "#4ECDC4", // teal
-  "#FFA600", // amber
-  "#6A4C93", // purple
-  "#1A535C", // dark teal
-];
+const COLORS = ["#FF6B6B", "#4ECDC4", "#FFA600", "#6A4C93", "#1A535C"];
 
 export default function AnalyticsPage() {
   return (
     <div className="space-y-6 p-4 sm:p-6 md:p-8">
-      {/* Page Header */}
+      {/* Header */}
       <div>
         <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
           Analytics
@@ -62,14 +55,11 @@ export default function AnalyticsPage() {
         </p>
       </div>
 
-      {/* Dashboard Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-6">
-        {/* Monthly Revenue */}
+        {/* Revenue */}
         <Card className="shadow-lg border border-gray-100">
           <CardHeader>
-            <CardTitle className="text-base md:text-lg font-semibold">
-              Monthly Revenue
-            </CardTitle>
+            <CardTitle>Monthly Revenue</CardTitle>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={280}>
@@ -80,25 +70,27 @@ export default function AnalyticsPage() {
                     <stop offset="95%" stopColor="#FF6B6B" stopOpacity={0} />
                   </linearGradient>
                 </defs>
+
                 <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
-                <XAxis dataKey="month" stroke="#6B7280" />
-                <YAxis stroke="#6B7280" />
+                <XAxis dataKey="month" />
+                <YAxis />
+
                 <Tooltip
                   contentStyle={{
-                    background: "#FFFFFF",
+                    background: "#fff",
                     border: "1px solid #E5E7EB",
                     borderRadius: "8px",
                   }}
-                  formatter={(v: number) => [
-                    `$${v.toLocaleString()}`,
-                    "Revenue",
-                  ]}
+                  formatter={(value) => {
+                    const num = Number(value ?? 0);
+                    return [`$${num.toLocaleString()}`, "Revenue"];
+                  }}
                 />
+
                 <Area
                   type="monotone"
                   dataKey="revenue"
                   stroke="#FF6B6B"
-                  fillOpacity={1}
                   fill="url(#revGrad)"
                   strokeWidth={2}
                 />
@@ -107,38 +99,40 @@ export default function AnalyticsPage() {
           </CardContent>
         </Card>
 
-        {/* Weekly Orders */}
+        {/* Orders */}
         <Card className="shadow-lg border border-gray-100">
           <CardHeader>
-            <CardTitle className="text-base md:text-lg font-semibold">
-              Weekly Order Trends
-            </CardTitle>
+            <CardTitle>Weekly Order Trends</CardTitle>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={280}>
               <BarChart data={orderTrends}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
-                <XAxis dataKey="week" stroke="#6B7280" />
-                <YAxis stroke="#6B7280" />
+                <XAxis dataKey="week" />
+                <YAxis />
+
                 <Tooltip
                   contentStyle={{
-                    background: "#FFFFFF",
+                    background: "#fff",
                     border: "1px solid #E5E7EB",
                     borderRadius: "8px",
                   }}
+                  formatter={(value) => {
+                    const num = Number(value ?? 0);
+                    return [num, "Orders"];
+                  }}
                 />
+
                 <Bar dataKey="orders" fill="#4ECDC4" radius={[6, 6, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </CardContent>
         </Card>
 
-        {/* Popular Categories */}
-        <Card className="shadow-lg border border-gray-100 md:col-span-1">
+        {/* Categories */}
+        <Card className="shadow-lg border border-gray-100">
           <CardHeader>
-            <CardTitle className="text-base md:text-lg font-semibold">
-              Popular Categories
-            </CardTitle>
+            <CardTitle>Popular Categories</CardTitle>
           </CardHeader>
           <CardContent className="flex flex-col items-center">
             <ResponsiveContainer width="100%" height={220}>
@@ -150,22 +144,21 @@ export default function AnalyticsPage() {
                   innerRadius={55}
                   outerRadius={85}
                   dataKey="value"
-                  paddingAngle={4}
                 >
                   {categoryData.map((_, i) => (
                     <Cell key={i} fill={COLORS[i]} />
                   ))}
                 </Pie>
+
                 <Tooltip
-                  contentStyle={{
-                    background: "#FFFFFF",
-                    border: "1px solid #E5E7EB",
-                    borderRadius: "8px",
+                  formatter={(value) => {
+                    const num = Number(value ?? 0);
+                    return [`${num}%`, "Share"];
                   }}
-                  formatter={(v: number) => [`${v}%`, "Share"]}
                 />
               </PieChart>
             </ResponsiveContainer>
+
             <div className="grid grid-cols-2 gap-2 w-full mt-3">
               {categoryData.map((item, i) => (
                 <div
@@ -176,36 +169,36 @@ export default function AnalyticsPage() {
                     className="h-3 w-3 rounded-full"
                     style={{ background: COLORS[i] }}
                   />
-                  <span className="text-gray-600">{item.name}</span>
-                  <span className="ml-auto font-medium text-gray-800">
-                    {item.value}%
-                  </span>
+                  <span>{item.name}</span>
+                  <span className="ml-auto font-medium">{item.value}%</span>
                 </div>
               ))}
             </div>
           </CardContent>
         </Card>
 
-        {/* Key Metrics */}
-        <Card className="shadow-lg border border-gray-100 md:col-span-1">
+        {/* Metrics */}
+        <Card className="shadow-lg border border-gray-100">
           <CardHeader>
-            <CardTitle className="text-base md:text-lg font-semibold">
-              Key Metrics
-            </CardTitle>
+            <CardTitle>Key Metrics</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4 sm:space-y-6">
+          <CardContent className="space-y-4">
             {[
               { label: "Avg. Order Value", value: "$32.50", change: "+5.2%" },
               { label: "Customer Return Rate", value: "68%", change: "+3.1%" },
               { label: "Avg. Prep Time", value: "18 min", change: "-2 min" },
               { label: "Table Turnover", value: "3.2x/day", change: "+0.4" },
             ].map((m) => (
-              <div key={m.label} className="flex items-center justify-between">
-                <span className="text-gray-500">{m.label}</span>
-                <div className="text-right">
-                  <span className="font-bold text-gray-900">{m.value}</span>
+              <div key={m.label} className="flex justify-between">
+                <span>{m.label}</span>
+                <div>
+                  <span className="font-bold">{m.value}</span>
                   <span
-                    className={`ml-2 text-sm ${m.change.startsWith("-") ? "text-red-500" : "text-green-500"}`}
+                    className={`ml-2 ${
+                      m.change.startsWith("-")
+                        ? "text-red-500"
+                        : "text-green-500"
+                    }`}
                   >
                     {m.change}
                   </span>

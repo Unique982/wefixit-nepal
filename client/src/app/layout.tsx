@@ -3,7 +3,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { Toaster } from "react-hot-toast";
+import { Toaster } from "@/components/ui/sonner";
 import { Provider } from "react-redux";
 import store from "@/lib/store/store";
 
@@ -18,8 +18,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
         <Provider store={store}>
-          <Toaster position="top-right" reverseOrder={false} />
-          <TooltipProvider delayDuration={0}>{children}</TooltipProvider>
+          <TooltipProvider delayDuration={0}>
+            {" "}
+            <Toaster richColors position="top-right" />
+            {children}
+          </TooltipProvider>
         </Provider>
       </body>
     </html>

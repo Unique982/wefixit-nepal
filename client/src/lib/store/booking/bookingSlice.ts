@@ -2,31 +2,51 @@ import API from "@/lib/http";
 import { Status } from "@/lib/types/type";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AppDispatch } from "../store";
-
 export interface IBooking {
   _id: string;
-  deviceType: string;
-  deviceModel: string;
-  issueDescription?: string;
-  currentStatus: string;
-  status: string;
+  user?: string;
+  isGuest: boolean;
+  customerFirstName?: string;
+  customerLastName?: string;
+  customerEmail?: string;
+  customerPhone?: string;
+  customerAddress?: string;
   trackingId: string;
-  createdAt: string;
-}
-export interface ICreateBooking {
   deviceType: string;
+  deviceBrand: string;
   deviceModel: string;
   issueDescription: string;
+  deviceImages?: string[];
+  currentStatus: string;
+  price?: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface ICreateBooking {
+  deviceType: string;
+  deviceBrand: string;
+  deviceModel: string;
+  issueDescription: string;
+  customerFirstName?: string;
+  customerLastName?: string;
+  customerEmail?: string;
+  customerPhone?: string;
+  customerAddress?: string;
+
+  deviceImages?: string[];
 }
 
 export interface IInitialState {
   bookings: IBooking[];
   status: Status;
 }
+
 const initialState: IInitialState = {
   bookings: [],
   status: Status.LOADING,
 };
+
 const bookingSlice = createSlice({
   name: "bookingSlice",
   initialState,
@@ -46,30 +66,43 @@ export const { setBookings, setStatus, addBooking } = bookingSlice.actions;
 export default bookingSlice.reducer;
 
 // create Booking
-export function createBooking(data: ICreateBooking) {
+export function createBooking(data: ICreateBooking, files?: File[]) {
   return async function createBookingThunk(dispatch: AppDispatch) {
     dispatch(setStatus(Status.LOADING));
+
     try {
-      const response = await API.post("/bookings", data);
-      if (response.status === 201 || response.status === 200) {
-        const newBooking = response.data.data || response.data;
-        dispatch(addBooking(newBooking));
-        dispatch(setStatus(Status.SUCCESS));
-        return {
-          success: true,
-          message: response.data.message || "Booking Successful",
-          data: newBooking,
-        };
+      const formData = new FormData();
+
+      Object.entries(data).forEach(([key, value]) => {
+        if (value !== undefined && value !== null) {
+          formData.append(key, String(value));
+        }
+      });
+
+      if (files?.length) {
+        files.forEach((file) => {
+          formData.append("deviceImages", file);
+        });
       }
-      return { success: false, message: "Unexpected response" };
+
+      const res = await API.post("/booking", formData);
+
+      const booking = res.data?.data;
+
+      dispatch(addBooking(booking));
+      dispatch(setStatus(Status.SUCCESS));
+
+      return {
+        success: true,
+        data: booking,
+        message: res.data?.message,
+      };
     } catch (err: any) {
       dispatch(setStatus(Status.ERROR));
+
       return {
         success: false,
-        message:
-          err.response?.data?.message ||
-          err.message ||
-          "Failed to create booking",
+        message: err.response?.data?.message || err.message || "Booking failed",
       };
     }
   };

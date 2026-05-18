@@ -2,16 +2,7 @@
 "use client";
 
 import { useState } from "react";
-import {
-  Bell,
-  Search,
-  User,
-  Settings,
-  LogOut,
-  Menu,
-  X,
-  Link,
-} from "lucide-react";
+import { Bell, Search, User, Settings, LogOut, Menu, X } from "lucide-react";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -27,6 +18,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 const notifications = [
   { id: 1, message: "New order from Table 5", time: "2m ago", unread: true },
