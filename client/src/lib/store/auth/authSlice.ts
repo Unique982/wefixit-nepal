@@ -2,7 +2,7 @@ import { Status } from "@/lib/types/type";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AppDispatch } from "../store";
 import API from "@/lib/http";
-
+import Cookies from "js-cookie";
 export interface IUser {
   id: string;
   firstName?: string;
@@ -64,9 +64,10 @@ export function userLogin(data: ILoginData) {
       const response = await API.post("/auth/login", data);
       if (response.status === 200) {
         const { token, user } = response.data;
+
         dispatch(
           setUser({
-            id: user.id,
+            id: user._id,
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
@@ -75,6 +76,12 @@ export function userLogin(data: ILoginData) {
           }),
         );
         localStorage.setItem("token", token);
+        const fullName = `${user.firstName} ${user.lastName}`;
+        Cookies.set("token", token, { expires: 7, path: "/" });
+        Cookies.set("role", user.role, { expires: 7, path: "/" });
+        Cookies.set("name", fullName, { expires: 7, path: "/" });
+        Cookies.set("email", user.email, { expires: 7, path: "/" });
+
         dispatch(setStatus(Status.SUCCESS));
         return { success: true, message: "Login successful", user };
       } else {

@@ -29,7 +29,7 @@ const tabs = [
   { label: "Other", value: "other", icon: <Settings2 className="w-4 h-4" /> },
 ];
 
-export default function SettingsPage() {
+export default function SettingsComponent() {
   const [activeTab, setActiveTab] = useState("general");
   const [form, setForm] = useState({
     siteName: "",

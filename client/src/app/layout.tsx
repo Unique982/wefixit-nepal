@@ -1,11 +1,6 @@
-"use client";
-
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { Toaster } from "@/components/ui/sonner";
-import { Provider } from "react-redux";
-import store from "@/lib/store/store";
+import Providers from "./providers"; // Import the wrapper we just made
 
 const inter = Inter({
   subsets: ["latin"],
@@ -13,17 +8,20 @@ const inter = Inter({
   weight: ["400", "500", "600", "700"],
 });
 
-export default function RootLayout({ children }) {
+export const metadata = {
+  title: "Admin Dashboard",
+  description: "Manage invoices and bookings",
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
-        <Provider store={store}>
-          <TooltipProvider delayDuration={0}>
-            {" "}
-            <Toaster richColors position="top-right" />
-            {children}
-          </TooltipProvider>
-        </Provider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

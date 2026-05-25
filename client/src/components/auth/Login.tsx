@@ -42,21 +42,22 @@ export default function Login() {
   const onSubmit = async (data: LoginInput) => {
     setIsLoading(true);
     try {
-      const result = await dispatch(userLogin(data));
+      const responseAction = await dispatch(userLogin(data));
 
-      if (result.success && result.user) {
-        toast.success(`Welcome back, ${result.user.firstName}!`);
+      if (responseAction && responseAction.success) {
+        toast.success(
+          `Welcome back, ${responseAction.user?.firstName || "User"}!`,
+        );
 
-        const role = result.user.role?.toLowerCase();
+        const role = responseAction.user?.role?.toLowerCase().trim();
+
         if (role === "admin") {
-          router.push("/admin/dashboard");
-        } else if (role === "user") {
-          router.push("/user/dashboard");
+          window.location.href = "/admin/dashboard";
         } else {
-          router.push("/dashboard");
+          window.location.href = "/customer/dashboard";
         }
       } else {
-        toast.error(result.message || "Invalid credentials.");
+        toast.error(responseAction?.message || "Invalid credentials.");
       }
     } catch (error) {
       toast.error("An unexpected error occurred. Please try again.");
@@ -64,7 +65,6 @@ export default function Login() {
       setIsLoading(false);
     }
   };
-
   return (
     <div className="flex items-center justify-center min-h-[calc(100vh-4rem)] bg-slate-50 px-4 py-12">
       <Card className="w-full max-w-md shadow-md border-slate-200/60 bg-white">

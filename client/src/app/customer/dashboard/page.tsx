@@ -1,7 +1,9 @@
+import Dashboard from "@/components/customer/dashboard/Dashboard";
+
 export default function CustomerDashbaord() {
   return (
     <>
-      <h1>Hello</h1>
+      <Dashboard />
     </>
   );
 }

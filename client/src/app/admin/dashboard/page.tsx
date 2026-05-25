@@ -1,12 +1,9 @@
-"use client";
-import ChatbotButton from "@/components/admin/ChatbotButton";
-import Index from "@/components/admin/DashboardCard";
+import AdminDashboard from "@/components/admin/dashboard/Dashboard";
 
-export default function DashboardPage() {
+export default function Dashboard() {
   return (
     <>
-      <ChatbotButton />
-      <Index />
+      <AdminDashboard />
     </>
   );
 }

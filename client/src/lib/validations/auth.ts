@@ -101,7 +101,24 @@ export const registerSchema = z.object({
       message:
         "Address contains invalid symbols. Only letters, numbers, spaces, commas, hyphens, and slashes (/) are allowed.",
     }),
-  password: passwordRule,
+  password: z
+    .string({ message: "Password must be a valid string" })
+    .min(1, "Password is required")
+    .min(8, "Password must be at least 8 characters long")
+    .max(100, "Password cannot exceed 100 characters")
+    .refine((val) => /[A-Z]/.test(val), {
+      message: "Password must contain at least one uppercase letter (A-Z).",
+    })
+    .refine((val) => /[a-z]/.test(val), {
+      message: "Password must contain at least one lowercase letter (a-z).",
+    })
+    .refine((val) => /[0-9]/.test(val), {
+      message: "Password must contain at least one number (0-9).",
+    })
+    .refine((val) => /[@$!%*?&]/.test(val), {
+      message:
+        "Password must contain at least one special character (e.g., @, $, !, %, *, ?, &).",
+    }),
 });
 export const otpSchema = z
   .object({

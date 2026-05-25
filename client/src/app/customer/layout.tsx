@@ -12,7 +12,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
     <SidebarProvider>
       <div className="min-h-screen flex w-full">
         {/* Sidebar */}
-        <SideBar />
+        <SideBar role="customer" />
 
         <div className="flex-1 flex flex-col min-w-0">
           <TopNavbar />
