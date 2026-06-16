@@ -1,14 +1,19 @@
+"use client";
+
 import Link from "next/link";
 import {
-  Twitter,
   Instagram,
+  Facebook,
   Linkedin,
   Mail,
   MapPin,
   Phone,
-  Wrench,
   ChevronRight,
+  // Added missing imports
+  Play as Youtube,
+  MessageCircle as Tiktok,
 } from "lucide-react";
+import Image from "next/image";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -16,21 +21,24 @@ export default function Footer() {
   const sections = [
     {
       title: "Services",
-      links: [
-        "Electrical Engineering",
-        "Precision Plumbing",
-        "HVAC Solutions",
-        "Smart Home Install",
-      ],
+      links: ["Smart Phone", "Mac Book", "Smart Watch", "IPad"],
     },
     {
-      title: "Company",
-      links: [
-        "Our Master Craftsmen",
-        "Safety Standards",
-        "Training Center",
-        "Equipment Arsenal",
-      ],
+      title: "Quick Links",
+      links: ["Home", "About", "Service", "Pricing"],
+    },
+  ];
+
+  // Define social icons with their respective components and links
+  const socialLinks = [
+    { Icon: Facebook, href: "https://www.facebook.com/wefixitnepal" },
+    {
+      Icon: Instagram,
+      href: "https://www.instagram.com/wefixit_nepal?igsh=MWMyeDNmanQ1ODl6eg==",
+    },
+    {
+      Icon: Tiktok,
+      href: "https://www.tiktok.com/@wefixit.nepal?_r=1&_t=ZS-9527YgllbgO",
     },
   ];
 
@@ -41,25 +49,33 @@ export default function Footer() {
           {/* Left: Branding & Vision */}
           <div className="lg:max-w-sm space-y-8">
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/20">
-                <Wrench size={22} className="text-white" />
+              <div className="p-1 bg-white rounded-lg shadow-sm">
+                <Image
+                  src="/WEfixit (1).png"
+                  alt="WEFixit Logo"
+                  width={35}
+                  height={35}
+                  className="object-contain"
+                />
               </div>
-              <span className="text-2xl font-black text-white tracking-tighter uppercase">
-                WEFIXIT <span className="text-blue-500">NEPAL</span>
-              </span>
+              <h1 className="text-xl md:text-2xl font-black tracking-tighter text-white">
+                WE<span className="text-blue-600">Fixit</span>
+              </h1>
             </div>
-            <p className="text-lg text-slate-300 font-light leading-relaxed">
+
+            <p className="text-lg text-slate-400 font-light leading-relaxed">
               Redefining maintenance in Kathmandu with precision, reliability,
               and world-class craftsmanship.
             </p>
-            <div className="flex gap-4">
-              {[Twitter, Instagram, Linkedin].map((Icon, i) => (
+
+            <div className="flex gap-3">
+              {socialLinks.map((social, i) => (
                 <Link
                   key={i}
-                  href="#"
-                  className="h-11 w-11 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 hover:bg-blue-600 hover:border-blue-600 transition-all group"
+                  href={social.href}
+                  className="h-11 w-11 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 hover:bg-blue-600 hover:border-blue-600 hover:-translate-y-1 transition-all group"
                 >
-                  <Icon
+                  <social.Icon
                     size={18}
                     className="group-hover:text-white transition-colors"
                   />
@@ -72,7 +88,7 @@ export default function Footer() {
           <div className="flex flex-wrap gap-12 sm:gap-24">
             {sections.map((section) => (
               <div key={section.title}>
-                <h4 className="text-white font-bold text-sm uppercase  mb-8 italic">
+                <h4 className="text-white font-bold text-xs uppercase tracking-widest mb-8 opacity-80">
                   {section.title}
                 </h4>
                 <ul className="space-y-4">
@@ -80,11 +96,11 @@ export default function Footer() {
                     <li key={link}>
                       <Link
                         href="#"
-                        className="group flex items-center gap-2 hover:text-white transition-colors"
+                        className="group flex items-center gap-2 hover:text-white transition-colors text-sm"
                       >
                         <ChevronRight
                           size={14}
-                          className="text-blue-500 opacity-0 group-hover:opacity-100   "
+                          className="text-blue-500 transition-all duration-300 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0"
                         />
                         {link}
                       </Link>
@@ -97,7 +113,7 @@ export default function Footer() {
 
           {/* Right: Direct Contact & Location */}
           <div className="lg:max-w-xs w-full">
-            <h4 className="text-white font-bold text-sm uppercase tracking-[0.2em] mb-8 italic">
+            <h4 className="text-white font-bold text-xs uppercase tracking-widest mb-8 opacity-80">
               Quick Contact
             </h4>
             <div className="space-y-6">
@@ -106,16 +122,24 @@ export default function Footer() {
                   <MapPin size={18} />
                 </div>
                 <div>
-                  <p className="text-white font-medium">Headquarters</p>
-                  <p className="text-sm">Baneshwor, Kathmandu, Nepal</p>
+                  <p className="text-white font-semibold text-sm">
+                    Headquarters
+                  </p>
+                  <p className="text-sm text-slate-500">
+                    Baneshwor, Kathmandu, Nepal
+                  </p>
                 </div>
               </div>
+
               <div className="flex items-center gap-4">
                 <div className="bg-blue-500/10 p-2 rounded-lg text-blue-500">
                   <Phone size={18} />
                 </div>
-                <p className="text-white font-medium">+977-1-4XXXXXX</p>
+                <p className="text-white font-semibold text-sm">
+                  +977-1-4XXXXXX
+                </p>
               </div>
+
               <Link
                 href="mailto:info@wefixit.com"
                 className="flex items-center gap-4 group"
@@ -123,7 +147,7 @@ export default function Footer() {
                 <div className="bg-blue-500/10 p-2 rounded-lg text-blue-500 group-hover:bg-blue-600 group-hover:text-white transition-colors">
                   <Mail size={18} />
                 </div>
-                <p className="text-white font-medium group-hover:text-blue-500 transition-colors">
+                <p className="text-white font-semibold text-sm group-hover:text-blue-500 transition-colors">
                   Contact Support
                 </p>
               </Link>
@@ -132,7 +156,7 @@ export default function Footer() {
         </div>
 
         {/* Footer Bottom */}
-        <div className="pt-8 border-t border-white/5 text-center text-slate-500 text-xs font-medium">
+        <div className="pt-8 border-t border-white/5 text-center text-slate-600 text-[10px] font-bold tracking-[0.3em] uppercase">
           © {currentYear} WEFIXIT NEPAL — PRECISE. POWERFUL. PROFESSIONAL.
         </div>
       </div>
